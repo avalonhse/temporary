@@ -1,0 +1,43 @@
+ <domain type="kvm">
+   <name>bossvm</name>
+   <uuid>fc57872a-2b54-408d-a6d0-f06fbe783cb9</uuid>
+   <memory>14680064</memory>
+   <currentMemory>14680064</currentMemory>
+   <!--
+   <memory>3145728</memory>
+   <currentMemory>3145728</currentMemory>
+   -->
+   <vcpu>1</vcpu>
+   <os>
+     <type arch="x86_64">hvm</type>
+     <boot dev="hd"/>
+   </os>
+   <features>
+     <acpi/><apic/><pae/>
+   </features>
+   <clock offset="utc"/>
+   <on_poweroff>destroy</on_poweroff>
+   <on_reboot>restart</on_reboot>
+   <on_crash>restart</on_crash>
+   <devices>
+     <emulator>/usr/bin/qemu-system-x86_64</emulator>
+     <!-- <emulator>/usr/bin/qemu-system-x86_64</emulator> -->
+     <disk type="file" device="disk">
+       <driver name="qemu" type="qcow2" cache="none"/>
+       <source file="/home/hoang/Documents/KnowledgeCorp/Docs/vmc-from-scratch-master/nodes/bossvm.img"/>
+       <target dev="vda" bus="virtio"/>
+     </disk>
+     <interface type="network">
+       <source network="default"/>
+       <mac address="52:54:00:11:79:16"/>
+       <model type="virtio"/>
+     </interface>
+     <input type="tablet" bus="usb"/>
+     <graphics type="vnc" port="-1"/>
+     <console type="pty"/>
+     <sound model="ich6"/>
+     <video>
+       <model type="cirrus"/>
+     </video>
+   </devices>
+ </domain>
